@@ -48,33 +48,33 @@ genre_id INT REFERENCES genre (id)
 );
 
 CREATE TABLE album_content(
-id SERIAL PRIMARY KEY,
 song_id INT REFERENCES song (id),
-album_id INT REFERENCES album (id)
+album_id INT REFERENCES album (id),
+PRIMARY KEY (song_id, album_id)
 );
 
 CREATE TABLE playlist_content(
-id SERIAL PRIMARY KEY,
 song_id INT REFERENCES song (id),
-playlist_id INT REFERENCES playlist (id)
+playlist_id INT REFERENCES playlist (id),
+PRIMARY KEY (song_id, playlist_id)
 );
 
 CREATE TABLE playlist_observer(
-id SERIAL PRIMARY KEY,
 playlist_id INTEGER REFERENCES playlist(id),
-user_id INTEGER REFERENCES spotify_user(id)
+user_id INTEGER REFERENCES spotify_user(id),
+PRIMARY KEY (playlist_id, user_id)
 );
 
 CREATE TABLE artist_observer(
-id SERIAL PRIMARY KEY,
 artist_id INTEGER REFERENCES artist(id),
-user_id INTEGER REFERENCES spotify_user(id)
+user_id INTEGER REFERENCES spotify_user(id),
+PRIMARY KEY (artist_id, user_id)
 );
 
 CREATE TABLE album_to_artist(
-id SERIAL PRIMARY KEY,
 artist_id INTEGER REFERENCES artist(id),
-album_id INTEGER REFERENCES album(id)
+album_id INTEGER REFERENCES album(id),
+PRIMARY KEY (artist_id, album_id)
 );
 
 CREATE TABLE user_subscription(
